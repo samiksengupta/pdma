@@ -1,101 +1,142 @@
 <template>
-  <q-layout view="lHh Lpr lFf">
-    <q-header elevated class="glossy">
-      <q-toolbar>
-        <q-btn
-          flat
-          dense
-          round
-          @click="leftDrawerOpen = !leftDrawerOpen"
-          aria-label="Menu"
-          icon="menu"
-        />
+    <q-layout view="hHh lpR fFf">
 
-        <q-toolbar-title>
-          Quasar App
-        </q-toolbar-title>
+        <q-header bordered class="bg-dark text-white">
+            <q-toolbar>
+                <q-btn dense flat round icon="menu" @click="leftDrawerOpen = !leftDrawerOpen" />
 
-        <div>Quasar v{{ $q.version }}</div>
-      </q-toolbar>
-    </q-header>
+                <q-toolbar-title @click="navigateToRoute('/')">
+                    <q-avatar>
+                        <img src="./assets/pokeball.png">
+                    </q-avatar>
+                    PDMA - The Pokemon Data Manager and Analytics Tool
+                </q-toolbar-title>
+            </q-toolbar>
+        </q-header>
 
-    <q-drawer
-      v-model="leftDrawerOpen"
-      show-if-above
-      bordered
-      class="bg-grey-2"
-    >
-      <q-list>
-        <q-item-label header>Essential Links</q-item-label>
-        <q-item clickable tag="a" target="_blank" href="https://quasar.dev">
-          <q-item-section avatar>
-            <q-icon name="school" />
-          </q-item-section>
-          <q-item-section>
-            <q-item-label>Docs</q-item-label>
-            <q-item-label caption>quasar.dev</q-item-label>
-          </q-item-section>
-        </q-item>
-        <q-item clickable tag="a" target="_blank" href="https://github.com/quasarframework/">
-          <q-item-section avatar>
-            <q-icon name="code" />
-          </q-item-section>
-          <q-item-section>
-            <q-item-label>Github</q-item-label>
-            <q-item-label caption>github.com/quasarframework</q-item-label>
-          </q-item-section>
-        </q-item>
-        <q-item clickable tag="a" target="_blank" href="https://chat.quasar.dev">
-          <q-item-section avatar>
-            <q-icon name="chat" />
-          </q-item-section>
-          <q-item-section>
-            <q-item-label>Discord Chat Channel</q-item-label>
-            <q-item-label caption>chat.quasar.dev</q-item-label>
-          </q-item-section>
-        </q-item>
-        <q-item clickable tag="a" target="_blank" href="https://forum.quasar.dev">
-          <q-item-section avatar>
-            <q-icon name="forum" />
-          </q-item-section>
-          <q-item-section>
-            <q-item-label>Forum</q-item-label>
-            <q-item-label caption>forum.quasar.dev</q-item-label>
-          </q-item-section>
-        </q-item>
-        <q-item clickable tag="a" target="_blank" href="https://twitter.com/quasarframework">
-          <q-item-section avatar>
-            <q-icon name="rss_feed" />
-          </q-item-section>
-          <q-item-section>
-            <q-item-label>Twitter</q-item-label>
-            <q-item-label caption>@quasarframework</q-item-label>
-          </q-item-section>
-        </q-item>
-      </q-list>
-    </q-drawer>
+        <q-drawer show-if-above v-model="leftDrawerOpen" side="left" bordered>
+            <q-list>
+                <q-item-label header>Pokedex</q-item-label>
+                <q-item clickable tag="router-link" to="/pokedex">
+                    <q-item-section avatar>
+                        <q-icon name="search" />
+                    </q-item-section>
+                    <q-item-section>
+                        <q-item-label>Pokedex</q-item-label>
+                        <q-item-label caption>List of Pokemon</q-item-label>
+                    </q-item-section>
+                </q-item>
+                <q-item-label header>Manage</q-item-label>
+                <q-item clickable tag="router-link" to="/datasets">
+                    <q-item-section avatar>
+                        <q-icon name="album" />
+                    </q-item-section>
+                    <q-item-section>
+                        <q-item-label>Data</q-item-label>
+                        <q-item-label caption>Search, List, Edit and Delete Data</q-item-label>
+                    </q-item-section>
+                </q-item>
+                <q-item clickable tag="router-link" to="/import">
+                    <q-item-section avatar>
+                        <q-icon name="download" />
+                    </q-item-section>
+                    <q-item-section>
+                        <q-item-label>Import</q-item-label>
+                        <q-item-label caption>Bulk Import Data</q-item-label>
+                    </q-item-section>
+                </q-item>
+                <q-item clickable tag="router-link" to="/export">
+                    <q-item-section avatar>
+                        <q-icon name="publish" />
+                    </q-item-section>
+                    <q-item-section>
+                        <q-item-label>Export</q-item-label>
+                        <q-item-label caption>Bulk Export Data</q-item-label>
+                    </q-item-section>
+                </q-item>
+                <q-item clickable tag="router-link" to="/versions">
+                    <q-item-section avatar>
+                        <q-icon name="numbers" />
+                    </q-item-section>
+                    <q-item-section>
+                        <q-item-label>Versions</q-item-label>
+                        <q-item-label caption>Edit Versions</q-item-label>
+                    </q-item-section>
+                </q-item>
+                <q-item clickable tag="router-link" to="/languages">
+                    <q-item-section avatar>
+                        <q-icon name="translate" />
+                    </q-item-section>
+                    <q-item-section>
+                        <q-item-label>Languages</q-item-label>
+                        <q-item-label caption>Edit Languages</q-item-label>
+                    </q-item-section>
+                </q-item>
+                <q-item clickable tag="router-link" to="/changelogs">
+                    <q-item-section avatar>
+                        <q-icon name="track_changes" />
+                    </q-item-section>
+                    <q-item-section>
+                        <q-item-label>Changelogs</q-item-label>
+                        <q-item-label caption>Generate Changelogs</q-item-label>
+                    </q-item-section>
+                </q-item>
+                <q-item-label header>Analytics</q-item-label>
+                <q-item clickable tag="router-link" to="/reports">
+                    <q-item-section avatar>
+                        <q-icon name="analytics" />
+                    </q-item-section>
+                    <q-item-section>
+                        <q-item-label>Reports</q-item-label>
+                        <q-item-label caption>Generate Reports</q-item-label>
+                    </q-item-section>
+                </q-item>
+                <q-item-label header>App</q-item-label>
+                <q-item clickable tag="router-link" to="/settings">
+                    <q-item-section avatar>
+                        <q-icon name="settings" />
+                    </q-item-section>
+                    <q-item-section>
+                        <q-item-label>Settings</q-item-label>
+                        <q-item-label caption>Change Options</q-item-label>
+                    </q-item-section>
+                </q-item>
+                <q-item clickable tag="router-link" to="/info">
+                    <q-item-section avatar>
+                        <q-icon name="info" />
+                    </q-item-section>
+                    <q-item-section>
+                        <q-item-label>Info</q-item-label>
+                        <q-item-label caption>Credits and Attributions</q-item-label>
+                    </q-item-section>
+                </q-item>
+            </q-list>
+        </q-drawer>
 
-    <q-page-container>
-      <HelloWorld />
-    </q-page-container>
-  </q-layout>
+        <q-page-container>
+            <router-view></router-view>
+        </q-page-container>
+
+    </q-layout>
 </template>
 
 <script>
 import { ref } from 'vue'
-import HelloWorld from './components/HelloWorld.vue'
 
 export default {
-  name: 'LayoutDefault',
+    name: 'LayoutDefault',
 
-  components: {
-    HelloWorld
-  },
+    setup() {
+        return {
+            leftDrawerOpen: ref(false)
+        }
+    },
 
-  setup () {
-    return {
-      leftDrawerOpen: ref(false)
-    }
-  }
+    methods: {
+        navigateToRoute(routePath) {
+            // Use Vue Router's programmatic navigation to navigate to the specified route
+            this.$router.push(routePath);
+        },
+    },
 }
 </script>
